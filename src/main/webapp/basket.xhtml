@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <h:head>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <title>Facelet Title</title>        
+    </h:head>
+    <h:body>
+        <b:container>
+            <b:row>
+            <b:navBar brand="Pizza.pl" brandHref="#">
+                <b:navbarLinks>
+                    <b:navLink value="Menu" href="index.xhtml"></b:navLink> 
+                    <b:navLink value="Basket" href="#"></b:navLink>
+                    <b:dropMenu value="Info">
+                        <b:navLink value="Contact" href="#"></b:navLink>
+                        <b:navLink value="Send Email" href="#"></b:navLink>
+                        <b:navLink value="Facebook" href="#"></b:navLink>                        
+                    </b:dropMenu>
+                </b:navbarLinks>
+            </b:navBar>
+            </b:row>
+            <b:row>
+                <b:column medium-screen="8">
+                    <b:panel id="basket" title="1# Check your basket" look="info" collapsible="false">
+                    <h:form>
+                        <h:dataTable  var="orderPizza" value="#{customersOrder.listOfPizzas}">
+                            <h:column>
+                                <div class="orderElementName"><h:outputText value="#{orderPizza.name}" /></div>
+                            </h:column>
+                            <h:column>
+                                <div class="orderElementSize"><h:outputText value="#{orderPizza.size}" /></div>
+                            </h:column>
+                            <h:column>
+                                <div class="orderElementPrice"><h:outputText value="#{orderPizza.price}" /></div>
+                            </h:column>
+                            <h:column>  
+                                <div class="button">
+                                    <h:commandButton value="Remove" action="#{customersOrder.removePizza(orderPizza)}">
+                                        <f:ajax render="basket" event="action"/>
+                                    </h:commandButton>
+                                </div>                                   
+                            </h:column>
+                        </h:dataTable>
+                        
+                    </h:form>
+                    <f:facet name="footer">
+                            <h:outputText value="Total Price: #{customersOrder.orderValue}" />
+                    </f:facet>
+                </b:panel>
+                    <b:panel id="paymentPanel" title="2# Choose your payment type" look="success" collapsible="false">                    
+                    <h:form>
+                        <h:selectOneRadio value="#{customersOrder.paymentRadioChoose}">
+                            <f:selectItem itemValue="0" itemLabel="Cash"/>
+                            <f:selectItem itemValue="1" itemLabel="Card"/>
+                            <f:ajax execute="@this" />    
+                        </h:selectOneRadio>
+                    </h:form>  
+                    </b:panel>
+                </b:column>                
+                <b:column medium-screen="4">
+                    <b:panel id="addressPanel" title="3# Add delivery address" look="primary" collapsible="false">
+                    
+                    <h:form>
+                        <b:label text="Surname:"/><h:message style="margin-left: 5px;font-size: 10px; color: Red; " for="surname" />
+                        <b:inputText autocomplete="off" id="surname" value="#{deliveryAddress.surname}" required="true" requiredMessage="THIS FIELD IS REQUIRED !!!"/>
+                        
+                        <b:label text="Street and number:"/> <h:message style="margin-left: 5px;font-size: 10px; color: Red; " for="street" />
+                        <b:inputText autocomplete="off" id="street"  value="#{deliveryAddress.street}" required="true" requiredMessage="THIS FIELD IS REQUIRED !!!"></b:inputText>
+                        
+                        <b:label text="Phone:"/> <h:message style="margin-left: 5px;font-size: 10px; color: Red; " for="phone" />
+                        <b:inputText  autocomplete="off" id="phone" value="#{deliveryAddress.phone}" required="true" requiredMessage="THIS FIELD IS REQUIRED !!!"></b:inputText>
+                       
+                        <b:label text="City:"/> <h:message style="margin-left: 5px;font-size: 10px; color: Red; " for="city" />
+                        <b:inputText  autocomplete="off" id="city" value="#{deliveryAddress.city}" required="true" requiredMessage="THIS FIELD IS REQUIRED !!!"></b:inputText>                   
+                        
+                        <b:label text="Post-code:"/> <h:message style="margin-left: 5px;font-size: 10px; color: Red; " for="postcode" />
+                        <b:inputText  autocomplete="off" id="postcode" value="#{deliveryAddress.postCode}" required="true" requiredMessage="THIS FIELD IS REQUIRED !!!"></b:inputText>
+                
+                        
+                   
+                        <b:commandButton id="button" process="@all" value="Go summary" action="#{customersOrder.setDeliveryAddress(deliveryAddress)}"/>  
+                        <h:message style="margin-left: 5px;font-size: 10px; color: Red; " for="button" />
+                    </h:form>  
+                    
+                    
+                </b:panel>
+                </b:column>
+                    
+            </b:row>
+            
+        </b:container>
+    </h:body>
+</html>
+

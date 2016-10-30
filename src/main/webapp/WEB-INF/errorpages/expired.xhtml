@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <h:head>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <title>Facelet Title</title>        
+    </h:head>
+    <h:body>
+        <b:container>
+            <b:row>
+            <b:navBar brand="Pizza.pl" brandHref="#">
+                <b:navbarLinks>
+                    <b:navLink value="Menu" href="index.xhtml"></b:navLink> 
+                    <b:navLink value="Basket" href="#"></b:navLink>
+                    <b:dropMenu value="Info">
+                        <b:navLink value="Contact" href="#"></b:navLink>
+                        <b:navLink value="Send Email" href="#"></b:navLink>
+                        <b:navLink value="Facebook" href="#"></b:navLink>                        
+                    </b:dropMenu>
+                </b:navbarLinks>
+            </b:navBar>
+            </b:row>
+            <b:row>
+                <h1>Error</h1>
+                Session expired.
+                <p><a href="#{request.contextPath}/index.xhtml">Click here to go back to menu.</a></p>
+            </b:row>            
+        </b:container>
+    
+    </h:body>
+</html>
+
+
+        
+
