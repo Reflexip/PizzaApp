@@ -9,6 +9,7 @@
         <h:outputStylesheet library="css" name="style.css"/>    
         <title>Pizza Web API</title> 
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
+        
     </h:head>
     <h:body>
         
@@ -64,7 +65,7 @@
                         </b:panel>
                 </h:form>
                 </b:column>
-                <b:column style="width: 300px; position: fixed; right: 20%; " medium-screen="4">
+                <b:column style="width: 300px; position: fixed; right: 5%; " medium-screen="4">
                 <b:panel id="basket" title="Your Basket" collapsible="false">
                     <h:form>
                         <h:dataTable styleClass="sizeTable" columnClasses="sizeTableColumn" var="orderPizza" value="#{customersOrder.listOfPizzas}">
@@ -93,10 +94,8 @@
                         </div>
                     </h:form>
                 </b:panel>
-                </b:column>
-                    
-            </b:row>
-            
+                </b:column>                    
+            </b:row>            
         </b:container>
     </h:body>
 </html>
